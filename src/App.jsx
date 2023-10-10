@@ -1,28 +1,15 @@
-import axios from 'axios'
-import './App.css'
-import { useEffect } from 'react'
+import './App.css';
+import Beers from './components/beers/Beers';
+import Container from './components/container/Container';
 
 function App() {
-  const apiBeer = 'https://ih-beers-api2.herokuapp.com/beers'
-
-  const data = async () => {
-    try {
-      const response = await axios.get(apiBeer)      
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    data()
-  }, [])
-
   return (
     <>
-      
+      <Container>
+        <Beers />
+      </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
