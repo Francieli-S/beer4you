@@ -1,13 +1,10 @@
 import './App.css';
-import Beers from './components/beers/Beers';
-import Container from './components/container/Container';
+import HomePage from './pages/homePage/HomePage';
 
 function App() {
   return (
     <>
-      <Container>
-        <Beers />
-      </Container>
+     <HomePage />
     </>
   );
 }
