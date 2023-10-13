@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './Beers.css';
+import './BeersGrid.css';
 
-export default function Beers() {
+export default function BeersGrid() {
   const [beers, setBeers] = useState([]);
 
   const apiBeer = 'https://ih-beers-api2.herokuapp.com/beers';
