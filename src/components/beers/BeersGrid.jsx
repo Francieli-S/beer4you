@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './BeersGrid.css';
+import BeerCard from './BeerCard';
 
 export default function BeersGrid() {
   const [beers, setBeers] = useState([]);
@@ -24,13 +25,12 @@ export default function BeersGrid() {
   return (
     <div>
       {beers.map((beer) => (
-        <div key={beer._id}>
-          <h3>{beer.name}</h3>
-          <div>
-            <img className='beers-img' src={beer.image_url} />
-          </div>
-        </div>
+        <BeerCard
+        key={beer._id}
+        name={beer.name}
+        image={beer.image_url}  
+        />
       ))}
     </div>
-  );
+  )
 }
