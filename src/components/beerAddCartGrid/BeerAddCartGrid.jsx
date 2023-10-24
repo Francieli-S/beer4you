@@ -25,9 +25,8 @@ export default function BeerAddCartGrid() {
   }, []);
 
   return beer ? (
-    <div className="wrapper">
+    <div className="beer-add-cart-grid_wrapper">
       <BeerCard
-        className="beer-card"
         key={beer._id}
         name={beer.name}
         image={beer.image_url}

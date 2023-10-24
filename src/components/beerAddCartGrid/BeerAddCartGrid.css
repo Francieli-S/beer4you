@@ -1,0 +1,10 @@
+.beer-add-cart-grid_wrapper {
+  background-color: lightgreen;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+.add-to-cart {
+  border: solid 1px black;
+}
