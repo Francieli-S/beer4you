@@ -1,3 +1,4 @@
+import BeerAddCartGrid from '../../components/beerAddCartGrid/BeerAddCartGrid';
 import Container from '../../components/container/Container';
 import Footer from '../../components/footer/Footer';
 import Navbar from '../../components/navbar/Navbar';
@@ -7,7 +8,7 @@ export default function BeerCartPage() {
     <>
       <Navbar />
       <Container>
-        <div>BeerCartPage</div>
+        <BeerAddCartGrid />
       </Container>
       <Footer />
     </>
