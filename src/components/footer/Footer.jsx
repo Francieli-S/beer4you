@@ -3,11 +3,11 @@ import './Footer.css';
 
 export default function Footer() {
   return (
-    <div className='footer'>
+    <div className="footer">
       <Container>
-      <div className='wrapper'>
-        <div>Footer</div>
-        <p>© Copyright Beer4you 2023</p>
+        <div className="footer_wrapper">
+          <div>Footer</div>
+          <p>© Copyright Beer4you 2023</p>
         </div>
       </Container>
     </div>

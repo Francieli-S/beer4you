@@ -38,7 +38,7 @@ export default function BeerAddCartGrid() {
         brewmaster={beer.contributed_by}
         today={beer.expiredAt}
       />
-      <div className="add-to-cart">Cart</div>
+      <div className="beer-add-cart-grid_add-to-cart">Cart</div>
     </div>
   ) : (
     <p>Loading</p>
