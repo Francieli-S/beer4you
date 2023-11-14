@@ -14,7 +14,6 @@ export default function BeerAddCartGrid() {
   const data = async () => {
     try {
       const response = await axios.get(`${apiBeer}/${beer_id}`);
-      console.log(response);
       setBeer(response.data);
     } catch (error) {
       console.log(error);

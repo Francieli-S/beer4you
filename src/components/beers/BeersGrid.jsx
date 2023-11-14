@@ -12,7 +12,6 @@ export default function BeersGrid() {
   const data = async () => {
     try {
       const response = await axios.get(apiBeer);
-      console.log(response);
       setBeers(response.data);
     } catch (error) {
       console.log(error);
