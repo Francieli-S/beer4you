@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './BeersGrid.css';
 import BeerCard from './BeerCard';
 
@@ -25,12 +26,10 @@ export default function BeersGrid() {
   return (
     <div>
       {beers.map((beer) => (
-        <BeerCard
-        key={beer._id}
-        name={beer.name}
-        image={beer.image_url}  
-        />
+        <Link key={beer._id} to={`/beers/${beer._id}`}>
+          <BeerCard name={beer.name} image={beer.image_url} />
+        </Link>
       ))}
     </div>
-  )
+  );
 }
