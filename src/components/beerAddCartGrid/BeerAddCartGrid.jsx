@@ -1,4 +1,5 @@
 import BeerCard from '../beers/BeerCard';
+import AddToCart from './AddToCart';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -25,7 +26,7 @@ export default function BeerAddCartGrid() {
   }, [beer_id]);
 
   return beer ? (
-    <div className="beer-add-cart-grid_wrapper">
+    <div className='beer-add-cart-grid_wrapper'>
       <BeerCard
         key={beer._id}
         name={beer.name}
@@ -38,7 +39,7 @@ export default function BeerAddCartGrid() {
         brewmaster={beer.contributed_by}
         today={beer.expiredAt}
       />
-      <div className="beer-add-cart-grid_add-to-cart">Cart</div>
+      <AddToCart name={beer.name} />
     </div>
   ) : (
     <p>Loading</p>

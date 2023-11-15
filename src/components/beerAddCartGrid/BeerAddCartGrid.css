@@ -4,7 +4,3 @@
   grid-template-columns: 2fr 1fr;
   gap: 10px;
 }
-
-.beer-add-cart-grid_add-to-cart {
-  border: solid 1px black;
-}

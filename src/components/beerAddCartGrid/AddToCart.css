@@ -1,0 +1,13 @@
+.add-to-cart {
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+.add-to-cart_infos {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px black;
+    gap: 10px;
+}
