@@ -1,20 +1,53 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { KEY_CART, BEERS } from '../../App';
 import './AddToCart.css';
 
-export default function AddToCart({ name }) {
+export default function AddToCart({
+  name,
+  image,
+  cartItems,
+  setCartItems,
+  setCartQuantity,
+}) {
   const beerPrice = 2.49;
 
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(beerPrice);
+  const [item, setItem] = useState({
+    name: name,
+    image: image,
+    quantity: quantity,
+  });
+  const [isAdd, setIsAdd] = useState(false);
 
+  // To calc the price and format it:
   const calcTotal = (quant, price) => {
     return (quant * price).toFixed(2) * 1;
   };
+
+  // To update cartQuantity:
+  const updateCartQuantity = () => {
+    let sum = 0;
+    for (let beer of BEERS) {
+      sum += beer[1].quantity;
+    }
+    setCartQuantity(sum);
+  };
+
+  // To render the page when update item
+  useEffect(() => {
+    BEERS.has(item.name) && BEERS.set(item.name, item);
+    setCartItems(BEERS);
+    updateCartQuantity();
+  }, [item]);
 
   const handleClickAdd = () => {
     const result = quantity + 1;
     setQuantity(result);
     setTotal(calcTotal(result, beerPrice));
+    setItem({ name: name, image: image, quantity: result });
+    console.log('BEERS', BEERS.get(item.name));
+    console.log('LOCALSTORAGE', BEERS.entries());
   };
 
   const handleClickSubstract = () => {
@@ -22,7 +55,17 @@ export default function AddToCart({ name }) {
       const result = quantity - 1;
       setQuantity(result);
       setTotal(calcTotal(result, beerPrice));
+      setItem({ name: name, image: image, quantity: result });
+      console.log('BEERS', BEERS.get(item.name));
+      console.log('LOCALSTORAGE', BEERS.entries());
     }
+  };
+
+  const handleAddToCart = () => {
+    BEERS.set(`${item.name}`, item);
+    setIsAdd(true);
+    updateCartQuantity();
+    console.log('LOCALSTORAGE', BEERS.entries());
   };
 
   return (
@@ -40,7 +83,7 @@ export default function AddToCart({ name }) {
         </div>
         <p> $ {total}</p>
       </div>
-      <button>Add to Cart</button>
+      {!isAdd && <button onClick={handleAddToCart}>Add to Cart</button>}
     </div>
   );
 }

@@ -6,7 +6,11 @@ import axios from 'axios';
 
 import './BeerAddCartGrid.css';
 
-export default function BeerAddCartGrid() {
+export default function BeerAddCartGrid({
+  cartItems,
+  setCartItems,
+  setCartQuantity,
+}) {
   const [beer, setBeer] = useState();
   const apiBeer = 'https://ih-beers-api2.herokuapp.com/beers';
 
@@ -39,7 +43,13 @@ export default function BeerAddCartGrid() {
         brewmaster={beer.contributed_by}
         today={beer.expiredAt}
       />
-      <AddToCart name={beer.name} />
+      <AddToCart
+        name={beer.name}
+        image={beer.image_url}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        setCartQuantity={setCartQuantity}
+      />
     </div>
   ) : (
     <p>Loading</p>
