@@ -9,6 +9,7 @@ export default function BeerCartPage() {
   // cartItens[{name1, photo, quantity}, {name2, photo, quantity}]
   // no comp navbar podemos filter cartItens.quantity e somar, mostrando só o num.
 
+  console.log('home-cart-items', cartItems);
   return (
     <>
       <Navbar cartQuantity={cartItems} />
