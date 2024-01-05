@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { KEY_CART, BEERS } from '../../App';
 import './AddToCart.css';
 
 export default function AddToCart({ name, image, cartItems, setCartItems }) {
@@ -14,11 +15,14 @@ export default function AddToCart({ name, image, cartItems, setCartItems }) {
   const [isAdd, setIsAdd] = useState(false);
   console.log('cart-first-time', cartItems);
   console.log('localStorage1-cartItems', cartItems);
-
+  console.log('************', KEY_CART);
+  console.log('&&&&&&&', BEERS);
+  // To calc the price and format it:
   const calcTotal = (quant, price) => {
     return (quant * price).toFixed(2) * 1;
   };
 
+  // To render the page when update item
   useEffect(() => {
     const itemStored = JSON.parse(localStorage.getItem(`item${name}`));
     if (itemStored) {
@@ -28,13 +32,21 @@ export default function AddToCart({ name, image, cartItems, setCartItems }) {
     console.log('localstorage', item);
   }, [item]);
 
+  // Add quantity
   const handleClickAdd = () => {
     const result = quantity + 1;
     setQuantity(result);
     setTotal(calcTotal(result, beerPrice));
-    setItem({ name: name, image: image, quantity: result });
+    console.log('adding more items', cartItems, item.name);
+    // console.log(cartItems.includes(item.name));
+    // if (cartItems.includes(item.name)) {
+    //   cartItems.find((item) => console.log('zzzzzz', item.quantity));
+    // } else {
+    //   setItem({ name: name, image: image, quantity: result });
+    // }
   };
 
+  // Subtract quantity
   const handleClickSubstract = () => {
     if (quantity > 1) {
       const result = quantity - 1;
@@ -44,11 +56,23 @@ export default function AddToCart({ name, image, cartItems, setCartItems }) {
     }
   };
 
-  const handleAddToCart = () => {
-    // Problemas: ver screenshot trello - doing
-    // array de objetos e nao array com 1 objeto com varios objetos
+  // Retrieve all localStorage and parse it:
+  const allStorage = () => {
+    let values = [],
+      keys = Object.keys(localStorage),
+      i = keys.length;
 
-    setCartItems([{ ...localStorage, item }]);
+    while (i--) {
+      values.push(JSON.parse(localStorage.getItem(keys[i])));
+    }
+
+    return values;
+  };
+
+  // Spread localStorage and add new item:
+  const handleAddToCart = () => {
+    const upDateStorage = allStorage();
+    setCartItems([...upDateStorage, item]);
     localStorage.setItem(`item${name}`, JSON.stringify(item));
     setIsAdd(true);
   };
