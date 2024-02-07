@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 import { KEY_CART, BEERS } from '../../App';
+import { CartContext, useCart } from '../../context/CartContext';
 import './AddToCart.css';
 
-export default function AddToCart({
-  name,
-  image,
-  cartItems,
-  setCartItems,
-  setCartQuantity,
-}) {
+export default function AddToCart({ name, image, children }) {
   const beerPrice = 2.49;
 
+  const { cartItems, setCartItems, setCartQuantity } = useCart();
+  console.log('cartItems >>>', cartItems);
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(beerPrice);
   const [item, setItem] = useState({
@@ -31,7 +28,7 @@ export default function AddToCart({
     for (let beer of BEERS) {
       sum += beer[1].quantity;
     }
-    setCartQuantity(sum);
+    // setCartQuantity(sum);
   };
 
   // To render the page when update item
@@ -61,6 +58,9 @@ export default function AddToCart({
     }
   };
 
+  // Quando volta na mesma cerveja, o botao de adicionar no carrinho esta la e nao aparece
+  // quantas ja foram adicionadas no carrinho.
+  // Ao adicionar mais da mesma a funcao esta sobrescrevendo o que ja tinha salvo no localStorage.
   const handleAddToCart = () => {
     BEERS.set(`${item.name}`, item);
     setIsAdd(true);
@@ -69,14 +69,14 @@ export default function AddToCart({
   };
 
   return (
-    <div className='add-to-cart'>
+    <div className="add-to-cart">
       <h2>{name}</h2>
-      <div className='add-to-cart_infos'>
+      <div className="add-to-cart_infos">
         <p>330ml</p>
         <p>$ {beerPrice}</p>
       </div>
-      <div className='add-to-cart_infos'>
-        <div className='add-to-cart_infos'>
+      <div className="add-to-cart_infos">
+        <div className="add-to-cart_infos">
           <button onClick={handleClickSubstract}>-</button>
           <p>{quantity} x</p>
           <button onClick={handleClickAdd}>+</button>

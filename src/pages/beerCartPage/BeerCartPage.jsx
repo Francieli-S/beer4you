@@ -5,6 +5,8 @@ import Footer from '../../components/footer/Footer';
 import Navbar from '../../components/navbar/Navbar';
 import { BEERS } from '../../App';
 
+// import { CartContext } from '../../context/CartContext';
+
 export default function BeerCartPage() {
   const [cartItems, setCartItems] = useState(BEERS);
   const [cartQuantity, setCartQuantity] = useState(0);

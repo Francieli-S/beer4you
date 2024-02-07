@@ -1,8 +1,11 @@
 import BeerCard from '../beers/BeerCard';
 import AddToCart from './AddToCart';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
+// import { useContext } from 'react';
+// import { CartContext } from "../../context/CartContext";
 
 import './BeerAddCartGrid.css';
 
@@ -30,7 +33,7 @@ export default function BeerAddCartGrid({
   }, [beer_id]);
 
   return beer ? (
-    <div className='beer-add-cart-grid_wrapper'>
+    <div className="beer-add-cart-grid_wrapper">
       <BeerCard
         key={beer._id}
         name={beer.name}
